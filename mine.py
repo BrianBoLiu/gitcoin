@@ -5,19 +5,19 @@ import hashlib
 import os
 import subprocess
 import sys
-import time
-import random
-if len(sys.argv) < 3:
-	print """Usage: ./miner.py <clone_url> <public_username>
+#import time
+#import random
+#if len(sys.argv) < 3:
+#	print """Usage: ./miner.py <clone_url> <public_username>
 
-Arguments:
+#Arguments:
 
-<clone_url> is the string you’d pass to `git clone` (i.e.
-  something of the form `username@hostname:path`)
+#<clone_url> is the string you’d pass to `git clone` (i.e.
+#  something of the form `username@hostname:path`)
 
-<public_username> is the public username provided to you in
-  the CTF web interface."""
-	sys.exit(1)
+#<public_username> is the public username provided to you in
+#  the CTF web interface."""
+#	sys.exit(1)
 
 clone_spec = sys.argv[1]
 public_username = sys.argv[2]
@@ -27,9 +27,9 @@ def solve():
 	# Start with a number with lots of digits so that the length of the commit
 	# object can be predicted and is unlikely to ever increase (because we’ll
 	# _probably_ have found a coin by then).
-	nonce = 100000000000000 # length=16
+	nonce = 410000000 # length=16
 
-	difficulty = '00000001'
+	difficulty = '00000000'
 	#with open('difficulty.txt', 'r') as f:
 	#	difficulty = f.read().strip()
 
@@ -47,7 +47,7 @@ parent %s
 author CTF user <me@example.com> 1333333337 +0000
 committer CTF user <me@example.com> 1333333337 +0000
 
-Give me a Bitcooin
+Give me 41 Bitcooooooins
 
 """ % (tree, parent)
 	base_hasher.update(header + base_content)
@@ -61,12 +61,13 @@ Give me a Bitcooin
 		sha1 = hasher.hexdigest()
                 #print nonce
 		#print '>>%s<<' % sha1
-		if sha1[:8] == 00000000:
+		if sha1[:8] == difficulty:
 			with open('commit.txt', 'w') as f:
 				f.write(content)
 			print 'Mined a Gitcoin! The SHA-1 is:'
 			os.system('git hash-object -t commit commit.txt -w')
 			os.system('git reset --hard %s' % sha1)
+                        os.system('git push origin master')
 			break
 
 def prepare_index():
@@ -85,12 +86,12 @@ while True:
 	prepare_index()
 	solve()
 	if os.system('git push origin master') == 0:
-		print 'Success :)'
+#		print 'Success :)'
 #		os.system('git checkout HEAD LEDGER.txt && git pull') #break
 		reset()
                 
-	else:
-		print 'Failure :('
+#	else:
+#		print 'Failure :('
 
 		#break
-		reset()
+#		reset()
