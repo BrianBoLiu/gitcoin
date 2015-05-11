@@ -35,8 +35,8 @@ def printit():
         #print message
             if message:
 		kill(proc.pid)
-                os.system('git checkout HEAD LEDGER.txt && git pull')
-            
+#                os.system('git checkout HEAD LEDGER.txt && git pull')
+                os.system('git reset --hard origin/master')
           #  proc2 = subprocess.Popen('python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', shell=True)
                 
                 proc = subprocess.Popen(['python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
