@@ -1,0 +1,5 @@
+Host gitcoin
+     HostName elec5616.com
+     User gitolite3
+     IdentityFile rambler
+     IdentitiesOnly yes
