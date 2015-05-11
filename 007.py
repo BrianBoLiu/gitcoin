@@ -28,9 +28,9 @@ def kill(proc_pid):
 def printit():
     #threading.Timer(0.1, printit).start()
     proc = subprocess.Popen(['python2 mine7.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-    proc2 = subprocess.Popen(['python2 /home/b/81/gitcoin/mine8.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-    proc3 = subprocess.Popen(['python2 /home/b/61/gitcoin/mine6.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-    proc4 = subprocess.Popen(['python2 /home/b/51/gitcoin/mine5.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+    proc2 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/81/gitcoin/mine8.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+    proc3 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/61/gitcoin/mine6.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+    proc4 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/51/gitcoin/mine5.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
 
     #e = 'e'
     while True:
@@ -51,9 +51,9 @@ def printit():
         #os.system('git checkout HEAD LEDGER.txt && git pull')
                 os.system('git reset --hard origin/master')
                 proc = subprocess.Popen(['python2 mine7.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-                proc2 = subprocess.Popen(['python2 /home/b/81/gitcoin/mine8.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-                proc3 = subprocess.Popen(['python2 /home/b/61/gitcoin/mine6.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
-                proc4 = subprocess.Popen(['python2 /home/b/51/gitcoin/mine5.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+                proc2 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/81/gitcoin/mine8.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+                proc3 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/61/gitcoin/mine6.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+                proc4 = subprocess.Popen(['python2 /home/boliubrian_gmail.com/51/gitcoin/mine5.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
 
 #    os.system('git checkout HEAD LEDGER.txt && git pull')    
 printit()
