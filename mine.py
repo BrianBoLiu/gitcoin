@@ -5,8 +5,8 @@ import hashlib
 import os
 import subprocess
 import sys
-import timee
-
+import time
+import random
 if len(sys.argv) < 3:
 	print """Usage: ./miner.py <clone_url> <public_username>
 
@@ -27,16 +27,16 @@ def solve():
 	# Start with a number with lots of digits so that the length of the commit
 	# object can be predicted and is unlikely to ever increase (because we’ll
 	# _probably_ have found a coin by then).
-	nonce = 1000000000000000 # length=16
+	nonce = 100000000000000 # length=16
 
-	#difficulty = '000001'
-	with open('difficulty.txt', 'r') as f:
-		difficulty = f.read().strip()
+	difficulty = '00000001'
+	#with open('difficulty.txt', 'r') as f:
+	#	difficulty = f.read().strip()
 
 	tree = subprocess.check_output(['git', 'write-tree']).strip()
 	with open('.git/refs/heads/master', 'r') as f:
 		parent = f.read().strip()
-	timestamp = int(time.time())
+	###timestamp = int(time.time())
 	print 'Mining…'
 	base_hasher = hashlib.sha1()
 	# The length of all such commit messages is 233, as long as the nonce is 16
@@ -47,7 +47,7 @@ parent %s
 author CTF user <me@example.com> 1333333337 +0000
 committer CTF user <me@example.com> 1333333337 +0000
 
-Give me a Gitcoin
+Give me a Bitcooin
 
 """ % (tree, parent)
 	base_hasher.update(header + base_content)
@@ -55,12 +55,13 @@ Give me a Gitcoin
 	while True:
 		nonce = nonce + 1
 		hasher = base_hasher.copy()
-		noncestr = str(nonce)
-		hasher.update(noncestr)
-		content = base_content + noncestr
+		#noncestr = str(nonce)
+		hasher.update(str(nonce))
+		content = base_content + str(nonce)
 		sha1 = hasher.hexdigest()
+                #print nonce
 		#print '>>%s<<' % sha1
-		if sha1 < difficulty:
+		if sha1[:8] == 00000000:
 			with open('commit.txt', 'w') as f:
 				f.write(content)
 			print 'Mined a Gitcoin! The SHA-1 is:'
@@ -74,19 +75,22 @@ def prepare_index():
 	os.system('git add LEDGER.txt')
 
 def reset():
-	os.system('git reset --hard HEAD')
-	os.system('git fetch')
+	os.system('git fetch origin master')
+        #os.system('git checkout HEAD LEDGER.txt && git pull')
 	os.system('git reset --hard origin/master')
-
+        
+#os.system('git checkout HEAD LEDGER.txt && git pull')
 while True:
-	reset()
+#        reset()
 	prepare_index()
 	solve()
 	if os.system('git push origin master') == 0:
 		print 'Success :)'
-		#break
+#		os.system('git checkout HEAD LEDGER.txt && git pull') #break
 		reset()
+                
 	else:
 		print 'Failure :('
+
 		#break
 		reset()
