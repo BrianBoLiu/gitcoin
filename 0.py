@@ -31,12 +31,14 @@ def printit():
     while True:
         
             message = p.get_message()
-         #   time.sleep(0.000000012)
+            time.sleep(0.01)
         #print message
             if message:
-		kill(proc.pid)
+                kill(proc.pid)
+                os.system('git fetch origin master')
 #                os.system('git checkout HEAD LEDGER.txt && git pull')
                 os.system('git reset --hard origin/master')
+            
           #  proc2 = subprocess.Popen('python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', shell=True)
                 
                 proc = subprocess.Popen(['python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
@@ -53,7 +55,7 @@ def printit():
       
 
 if __name__ == "__main__":
-    os.system('git checkout HEAD LEDGER.txt && git pull')
+#    os.system('git checkout HEAD LEDGER.txt && git pull')
     printit()
     #if printit():
      #   kill(proc.pid)
