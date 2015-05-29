@@ -27,21 +27,18 @@ def printit():
     #threading.Timer(0.1, printit).start()
     #pro = subprocess.Popen('python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
     #while True:
-    proc = subprocess.Popen(['python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+    proc = subprocess.Popen(['./miner1 ./ rambler', 'param'], shell=True)
     while True:
         
             message = p.get_message()
-            time.sleep(0.01)
+            time.sleep(0.001)
         #print message
             if message:
-                kill(proc.pid)
-                os.system('git fetch origin master')
-#                os.system('git checkout HEAD LEDGER.txt && git pull')
-                os.system('git reset --hard origin/master')
+                os.system('git checkout HEAD LEDGER.txt && git pull')
             
           #  proc2 = subprocess.Popen('python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', shell=True)
-                
-                proc = subprocess.Popen(['python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
+                kill(proc.pid)
+                proc = subprocess.Popen(['./miner1 ./ rambler', 'param'], shell=True)
           #  kill(proc2.pid)
           #  proc = subprocess.Popen(['python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', 'param'], shell=True)
           #  proc2 = subprocess.Popen('python2 mine.py gitosis3@elec5616.com:gitcoin.git rambler', shell=True)
@@ -55,7 +52,7 @@ def printit():
       
 
 if __name__ == "__main__":
-#    os.system('git checkout HEAD LEDGER.txt && git pull')
+    os.system('git checkout HEAD LEDGER.txt && git pull')
     printit()
     #if printit():
      #   kill(proc.pid)
